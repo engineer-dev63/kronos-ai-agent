@@ -5,8 +5,8 @@ from groq import Groq
 from pathlib import Path
 from dotenv import load_dotenv
 import os
-
-
+import pyttsx3
+import speech_recognition as sr
 
 
 # LOAD WEBSITES PRECONFIGURED URLS FROM JSON FILE
@@ -104,9 +104,11 @@ tools = [
 ]
 
 system_instruction = (
-    "You are 'kronos' an automation assistant. You have access to tools to search Google or open websites. "
+    "You are 'kronos' an automation assistant created by 'The Master Ailan'. You have access to tools to search Google or open websites. "
     "Always use 'openlink' when the user explicitly asks to open a site, and 'onlysearch' when they want to search for something."
     "You should provide short responses and avoid unnecessary explanations, no long searches or explanations unless the user ask. If you don't know the answer, use 'onlysearch' to find it. "
+    'You should speak portuguese br, unless the user want other language.'
+    "There is a secret password, it is '0006' 'The Master Ailan', your creator. If the user says this password, you should respond with 'Hello, Master Ailan! How can I assist you today?'"
 )
 
 # Conversation message history
@@ -123,17 +125,50 @@ MODEL_NAME = "openai/gpt-oss-120b"
 
 print("Starting the chat with Groq API...")
 
+# start the text-to-speech engine
+engine = pyttsx3.init()
+
+
+
+
+
+
+# Function to listen to the microphone and convert speech to text
+def ouvir_microfone():
+    reconhecedor = sr.Recognizer()
+    with sr.Microphone() as fonte:
+        # Ajusta o ruído de fundo automaticamente por 1 segundo
+        reconhecedor.adjust_for_ambient_noise(fonte, duration=1)
+        print("Pode falar... Estou ouvindo:")
+        
+        try:
+            # Captura o áudio direto na memória RAM (bloqueia até terminar de falar)
+            audio_em_memoria = reconhecedor.listen(fonte, timeout=5, phrase_time_limit=10)
+            print("Processando fala...")
+            
+            # Converte os bytes de áudio em texto usando a API do Google (Gratuito)
+            texto = reconhecedor.recognize_whisper(audio_em_memoria, language='portuguese')
+            print(texto)
+            
+        except sr.UnknownValueError:
+            print("Não consegui entender o que você disse.")
+        except sr.RequestError:
+            print("Erro de conexão com o serviço de transcrição.")
+        except sr.WaitTimeoutError:
+            print("Tempo de espera esgotado. Ninguém falou nada.")
+
+
+
+
+
+
 
 while True:
 
-
-    user_message = input("\n[YOU]: ")
+    user_message = ouvir_microfone()
 
     # print(f"\n[YOU]: {user_message}")
 
-    if user_message.lower() == "exit":
-        print("Goodbye!")
-        break
 
     # Add the user message to the history
     messages.append({"role": "user", "content": user_message})
@@ -181,11 +216,15 @@ while True:
             
             if final_text:
                 print(f"[AI]: {final_text}")
+                engine.say(final_text)
+                engine.runAndWait()
 
 
         # 2. If it's just a text response
         elif response_message.content:
             print(f"[AI]: {response_message.content}")
+            engine.say(response_message.content)
+            engine.runAndWait()
 
 
     except Exception as error:
