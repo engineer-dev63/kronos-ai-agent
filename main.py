@@ -1,3 +1,6 @@
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning)
+
 import json
 import webbrowser
 from urllib.parse import quote
@@ -5,9 +8,14 @@ from groq import Groq
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+import sys
+from RealtimeSTT import AudioToTextRecorder
 
-
-
+# dependences
+# RealtimeSTT
+# "RealtimeSTT[faster-whisper]"
+# silero-vad
+# packaging
 
 # LOAD WEBSITES PRECONFIGURED URLS FROM JSON FILE
 
@@ -63,7 +71,6 @@ available_functions = {
 load_dotenv()
 groq_api_key = os.getenv("GROQ_API_KEY")
 
-
 client = Groq(api_key=groq_api_key)
 
 tools = [
@@ -117,77 +124,95 @@ messages = [
 # Groq model with tool support
 MODEL_NAME = "openai/gpt-oss-120b"
 
+
 # ============================================================
-# MAIN LOOP
+# FUNCTIONS WITH AUDIO SCOPE FIXED
 # ============================================================
 
-print("Starting the chat with Groq API...")
+def ouvir_microfone_ultra_rapido(recorder_instance):
+    print("\n[Kronos] Ouvindo... (Pode falar nativamente)")
+    # O método text() captura o áudio em tempo real e processa via VAD (Voice Activity Detection)
+    texto_transcrito = recorder_instance.text()
+    return texto_transcrito.strip()
 
 
-while True:
+# ============================================================
+# MAIN PROGRAM ENTRANCE (SAFE FOR WINDOWS SPAWN)
+# ============================================================
 
+if __name__ == '__main__':
+    print("Starting the chat with Groq API...")
+    print("Carregando modelo de voz ultra rápido...")
 
-    user_message = input("\n[YOU]: ")
+    # Inicializa o gravador com segurança dentro do bloco main
+    recorder = AudioToTextRecorder(
+        model="tiny",              # Modelo ideal para velocidade instantânea
+        language="pt",             # Idioma padrão Português
+        input_device_index=None,   # Usa o microfone padrão do Windows
+        spinner=False              # Desativa animações inúteis no terminal
+    )
 
-    # print(f"\n[YOU]: {user_message}")
+    print("Sistema Kronos AI pronto!")
 
-    if user_message.lower() == "exit":
-        print("Goodbye!")
-        break
+    while True:
+        # Passa a instância do recorder criada no escopo protegido
+        user_message = ouvir_microfone_ultra_rapido(recorder)
 
-    # Add the user message to the history
-    messages.append({"role": "user", "content": user_message})
+        if user_message:
+            print(f"Você disse: {user_message}")
 
-    try:
-        # Send the request to Groq
-        response = client.chat.completions.create(
-            model=MODEL_NAME,
-            messages=messages,
-            tools=tools,
-            tool_choice="auto",
-            max_tokens=4096
-        )
+            if user_message.lower() == "exit" or "sair" in user_message.lower():
+                print("Goodbye!")
+                break
 
-        response_message = response.choices[0].message
-        messages.append(response_message)
+            # Add the user message to the history
+            messages.append({"role": "user", "content": user_message})
 
-        # 1. If Groq decides to call a tool (Function Calling)
-        if response_message.tool_calls:
-            for tool_call in response_message.tool_calls:
-                function_name = tool_call.function.name
-                function_args = json.loads(tool_call.function.arguments)
+            try:
+                # Send the request to Groq
+                response = client.chat.completions.create(
+                    model=MODEL_NAME,
+                    messages=messages,
+                    tools=tools,
+                    tool_choice="auto",
+                    max_tokens=4096
+                )
 
-                # print(f"\n[TOOL CALL]: {function_name}")
-                # print(f"[ARGUMENTS]: {function_args}")
+                response_message = response.choices[0].message
+                messages.append(response_message)
 
-                # Execute the function
-                function_to_call = available_functions[function_name]
-                function_response = function_to_call(keyword=function_args.get("keyword"))
+                # 1. If Groq decides to call a tool (Function Calling)
+                if response_message.tool_calls:
+                    for tool_call in response_message.tool_calls:
+                        function_name = tool_call.function.name
+                        function_args = json.loads(tool_call.function.arguments)
 
-                # Send the function result back to the model
-                messages.append({
-                    "tool_call_id": tool_call.id,
-                    "role": "tool",
-                    "name": function_name,
-                    "content": function_response,
-                })
+                        # Execute the function
+                        function_to_call = available_functions[function_name]
+                        function_response = function_to_call(keyword=function_args.get("keyword"))
 
-            # Generate the final response with the tool's result
-            second_response = client.chat.completions.create(
-                model=MODEL_NAME,
-                messages=messages
-            )
-            final_text = second_response.choices[0].message.content
-            
-            if final_text:
-                print(f"[AI]: {final_text}")
+                        # Send the function result back to the model
+                        messages.append({
+                            "tool_call_id": tool_call.id,
+                            "role": "tool",
+                            "name": function_name,
+                            "content": function_response,
+                        })
 
+                    # Generate the final response with the tool's result
+                    second_response = client.chat.completions.create(
+                        model=MODEL_NAME,
+                        messages=messages
+                    )
+                    final_text = second_response.choices[0].message.content
+                    
+                    if final_text:
+                        print(f"[AI]: {final_text}")
 
-        # 2. If it's just a text response
-        elif response_message.content:
-            print(f"[AI]: {response_message.content}")
+                # 2. If it's just a text response
+                elif response_message.content:
+                    print(f"[AI]: {response_message.content}")
 
-
-    except Exception as error:
-        print("\nError:")
-        print(error)
+            except Exception as error:
+                print("\nError:")
+                print(error)

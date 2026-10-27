@@ -1,0 +1,800 @@
+2026-10-27 19:32:47.803 - RealTimeSTT: realtimestt - INFO - Starting RealTimeSTT
+2026-10-27 19:32:47.887 - RealTimeSTT: realtimestt - INFO - Initializing audio recording (creating pyAudio input stream, sample rate: 16000 buffer size: 512
+2026-10-27 19:32:47.961 - RealTimeSTT: realtimestt - INFO - Initializing WebRTC voice with Sensitivity 3
+2026-10-27 19:32:47.965 - RealTimeSTT: realtimestt - DEBUG - WebRTC VAD voice activity detection engine initialized successfully
+2026-10-27 19:32:47.969 - RealTimeSTT: realtimestt - DEBUG - Silero VAD auto backend raw_onnx_ifless unavailable
+Traceback (most recent call last):
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 176, in _create_auto_vad
+    return _create_raw_onnx_vad(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 225, in _create_raw_onnx_vad
+    raise SileroVadError(
+RealtimeSTT.core.silero_vad.SileroVadError: Could not find silero_vad_op18_ifless.onnx in the installed silero_vad package or the local torch hub cache. Install 'silero-vad' or pass silero_onnx_model_path.
+2026-10-27 19:32:47.993 - RealTimeSTT: realtimestt - DEBUG - Silero VAD auto backend raw_onnx unavailable
+Traceback (most recent call last):
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 176, in _create_auto_vad
+    return _create_raw_onnx_vad(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 225, in _create_raw_onnx_vad
+    raise SileroVadError(
+RealtimeSTT.core.silero_vad.SileroVadError: Could not find silero_vad.onnx in the installed silero_vad package or the local torch hub cache. Install 'silero-vad' or pass silero_onnx_model_path.
+2026-10-27 19:33:18.995 - RealTimeSTT: realtimestt - ERROR - Error initializing Silero VAD voice activity detection engine: Could not initialize any automatic Silero VAD backend. Tried: raw_onnx_ifless: Could not find silero_vad_op18_ifless.onnx in the installed silero_vad package or the local torch hub cache. Install 'silero-vad' or pass silero_onnx_model_path.; raw_onnx: Could not find silero_vad.onnx in the installed silero_vad package or the local torch hub cache. Install 'silero-vad' or pass silero_onnx_model_path.; pytorch_cpu: No module named 'packaging'
+Traceback (most recent call last):
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 287, in _create_pytorch_vad
+    loaded = _load_silero_package_model(onnx=False)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 303, in _load_silero_package_model
+    module = import_module("silero_vad")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'silero_vad'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 195, in _create_auto_vad
+    return _create_pytorch_vad("cpu")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 289, in _create_pytorch_vad
+    loaded = _load_torch_hub_model(onnx=False)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 319, in _load_torch_hub_model
+    loaded = torch.hub.load(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\torch\hub.py", line 669, in load
+    model = _load_local(repo_or_dir, model, *args, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\torch\hub.py", line 699, in _load_local
+    hub_module = _import_module(MODULE_HUBCONF, hubconf_path)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\torch\hub.py", line 118, in _import_module
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\Ailan/.cache\torch\hub\snakers4_silero-vad_master\hubconf.py", line 6, in <module>
+    from silero_vad.utils_vad import (init_jit_model,
+  File "C:\Users\Ailan/.cache\torch\hub\snakers4_silero-vad_master\src\silero_vad\__init__.py", line 7, in <module>
+    from silero_vad.model import load_silero_vad
+  File "C:\Users\Ailan/.cache\torch\hub\snakers4_silero-vad_master\src\silero_vad\model.py", line 1, in <module>
+    from .utils_vad import init_jit_model, OnnxWrapper
+  File "C:\Users\Ailan/.cache\torch\hub\snakers4_silero-vad_master\src\silero_vad\utils_vad.py", line 4, in <module>
+    from packaging import version
+ModuleNotFoundError: No module named 'packaging'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\initialization.py", line 869, in _initialize_voice_activity_detection
+    recorder.silero_vad_model = create_silero_vad_model(
+                                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 114, in create_silero_vad_model
+    return _create_auto_vad(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 198, in _create_auto_vad
+    raise SileroVadError(
+RealtimeSTT.core.silero_vad.SileroVadError: Could not initialize any automatic Silero VAD backend. Tried: raw_onnx_ifless: Could not find silero_vad_op18_ifless.onnx in the installed silero_vad package or the local torch hub cache. Install 'silero-vad' or pass silero_onnx_model_path.; raw_onnx: Could not find silero_vad.onnx in the installed silero_vad package or the local torch hub cache. Install 'silero-vad' or pass silero_onnx_model_path.; pytorch_cpu: No module named 'packaging'
+2026-10-27 19:33:28.773 - RealTimeSTT: realtimestt - INFO - Starting RealTimeSTT
+2026-10-27 19:33:28.773 - RealTimeSTT: realtimestt - INFO - Starting RealTimeSTT
+2026-10-27 19:36:11.707 - RealTimeSTT: realtimestt - INFO - Starting RealTimeSTT
+2026-10-27 19:36:11.767 - RealTimeSTT: realtimestt - INFO - Initializing audio recording (creating pyAudio input stream, sample rate: 16000 buffer size: 512
+2026-10-27 19:36:11.831 - RealTimeSTT: realtimestt - INFO - Initializing WebRTC voice with Sensitivity 3
+2026-10-27 19:36:11.831 - RealTimeSTT: realtimestt - DEBUG - WebRTC VAD voice activity detection engine initialized successfully
+2026-10-27 19:36:11.847 - RealTimeSTT: realtimestt - DEBUG - Silero VAD auto backend raw_onnx_ifless unavailable
+Traceback (most recent call last):
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 176, in _create_auto_vad
+    return _create_raw_onnx_vad(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 230, in _create_raw_onnx_vad
+    return RawSileroOnnxVad(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 443, in __init__
+    ort = import_module("onnxruntime")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'onnxruntime'
+2026-10-27 19:36:11.874 - RealTimeSTT: realtimestt - DEBUG - Silero VAD auto backend raw_onnx unavailable
+Traceback (most recent call last):
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 176, in _create_auto_vad
+    return _create_raw_onnx_vad(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 230, in _create_raw_onnx_vad
+    return RawSileroOnnxVad(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 443, in __init__
+    ort = import_module("onnxruntime")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'onnxruntime'
+2026-10-27 19:36:13.952 - RealTimeSTT: realtimestt - DEBUG - Silero VAD voice activity detection engine initialized successfully with backend pytorch_cpu
+2026-10-27 19:36:18.821 - RealTimeSTT: realtimestt - DEBUG - Starting realtime worker
+2026-10-27 19:36:18.821 - RealTimeSTT: realtimestt - DEBUG - Waiting for main transcription model to start
+2026-10-27 19:36:18.821 - RealTimeSTT: realtimestt - DEBUG - Realtime transcription disabled; realtime worker exits
+2026-10-27 19:36:59.035 - RealTimeSTT: realtimestt - INFO - Starting RealTimeSTT
+2026-10-27 19:36:59.091 - RealTimeSTT: realtimestt - INFO - Initializing audio recording (creating pyAudio input stream, sample rate: 16000 buffer size: 512
+2026-10-27 19:36:59.124 - RealTimeSTT: realtimestt - INFO - Initializing WebRTC voice with Sensitivity 3
+2026-10-27 19:36:59.124 - RealTimeSTT: realtimestt - DEBUG - WebRTC VAD voice activity detection engine initialized successfully
+2026-10-27 19:36:59.131 - RealTimeSTT: realtimestt - DEBUG - Silero VAD auto backend raw_onnx_ifless unavailable
+Traceback (most recent call last):
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 176, in _create_auto_vad
+    return _create_raw_onnx_vad(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 230, in _create_raw_onnx_vad
+    return RawSileroOnnxVad(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 443, in __init__
+    ort = import_module("onnxruntime")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'onnxruntime'
+2026-10-27 19:36:59.166 - RealTimeSTT: realtimestt - DEBUG - Silero VAD auto backend raw_onnx unavailable
+Traceback (most recent call last):
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 176, in _create_auto_vad
+    return _create_raw_onnx_vad(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 230, in _create_raw_onnx_vad
+    return RawSileroOnnxVad(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 443, in __init__
+    ort = import_module("onnxruntime")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'onnxruntime'
+2026-10-27 19:37:00.111 - RealTimeSTT: realtimestt - DEBUG - Silero VAD voice activity detection engine initialized successfully with backend pytorch_cpu
+2026-10-27 19:37:01.284 - RealTimeSTT: realtimestt - DEBUG - Starting realtime worker
+2026-10-27 19:37:01.284 - RealTimeSTT: realtimestt - DEBUG - Waiting for main transcription model to start
+2026-10-27 19:37:01.286 - RealTimeSTT: realtimestt - DEBUG - Realtime transcription disabled; realtime worker exits
+2026-10-27 19:37:20.866 - RealTimeSTT: realtimestt - INFO - Starting RealTimeSTT
+2026-10-27 19:37:21.157 - RealTimeSTT: realtimestt - INFO - Starting RealTimeSTT
+2026-10-27 19:41:28.898 - RealTimeSTT: realtimestt - INFO - Starting RealTimeSTT
+2026-10-27 19:41:28.969 - RealTimeSTT: realtimestt - INFO - Initializing audio recording (creating pyAudio input stream, sample rate: 16000 buffer size: 512
+2026-10-27 19:41:29.018 - RealTimeSTT: realtimestt - INFO - Initializing WebRTC voice with Sensitivity 3
+2026-10-27 19:41:29.018 - RealTimeSTT: realtimestt - DEBUG - WebRTC VAD voice activity detection engine initialized successfully
+2026-10-27 19:41:29.037 - RealTimeSTT: realtimestt - DEBUG - Silero VAD auto backend raw_onnx_ifless unavailable
+Traceback (most recent call last):
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 176, in _create_auto_vad
+    return _create_raw_onnx_vad(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 230, in _create_raw_onnx_vad
+    return RawSileroOnnxVad(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 443, in __init__
+    ort = import_module("onnxruntime")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'onnxruntime'
+2026-10-27 19:41:29.063 - RealTimeSTT: realtimestt - DEBUG - Silero VAD auto backend raw_onnx unavailable
+Traceback (most recent call last):
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 176, in _create_auto_vad
+    return _create_raw_onnx_vad(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 230, in _create_raw_onnx_vad
+    return RawSileroOnnxVad(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 443, in __init__
+    ort = import_module("onnxruntime")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'onnxruntime'
+2026-10-27 19:41:30.313 - RealTimeSTT: realtimestt - DEBUG - Silero VAD voice activity detection engine initialized successfully with backend pytorch_cpu
+2026-10-27 19:41:31.828 - RealTimeSTT: realtimestt - DEBUG - Starting realtime worker
+2026-10-27 19:41:31.828 - RealTimeSTT: realtimestt - DEBUG - Waiting for main transcription model to start
+2026-10-27 19:41:31.828 - RealTimeSTT: realtimestt - DEBUG - Realtime transcription disabled; realtime worker exits
+2026-10-27 19:44:21.755 - RealTimeSTT: realtimestt - INFO - Starting RealTimeSTT
+2026-10-27 19:44:21.867 - RealTimeSTT: realtimestt - INFO - Initializing audio recording (creating pyAudio input stream, sample rate: 16000 buffer size: 512
+2026-10-27 19:44:21.918 - RealTimeSTT: realtimestt - INFO - Initializing WebRTC voice with Sensitivity 3
+2026-10-27 19:44:21.921 - RealTimeSTT: realtimestt - DEBUG - WebRTC VAD voice activity detection engine initialized successfully
+2026-10-27 19:44:21.938 - RealTimeSTT: realtimestt - DEBUG - Silero VAD auto backend raw_onnx_ifless unavailable
+Traceback (most recent call last):
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 176, in _create_auto_vad
+    return _create_raw_onnx_vad(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 230, in _create_raw_onnx_vad
+    return RawSileroOnnxVad(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 443, in __init__
+    ort = import_module("onnxruntime")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'onnxruntime'
+2026-10-27 19:44:21.953 - RealTimeSTT: realtimestt - DEBUG - Silero VAD auto backend raw_onnx unavailable
+Traceback (most recent call last):
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 176, in _create_auto_vad
+    return _create_raw_onnx_vad(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 230, in _create_raw_onnx_vad
+    return RawSileroOnnxVad(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 443, in __init__
+    ort = import_module("onnxruntime")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'onnxruntime'
+2026-10-27 19:44:23.161 - RealTimeSTT: realtimestt - DEBUG - Silero VAD voice activity detection engine initialized successfully with backend pytorch_cpu
+2026-10-27 19:44:24.310 - RealTimeSTT: realtimestt - DEBUG - Starting realtime worker
+2026-10-27 19:44:24.311 - RealTimeSTT: realtimestt - DEBUG - Waiting for main transcription model to start
+2026-10-27 19:44:24.311 - RealTimeSTT: realtimestt - DEBUG - Realtime transcription disabled; realtime worker exits
+2026-10-27 19:46:58.043 - RealTimeSTT: realtimestt - INFO - Starting RealTimeSTT
+2026-10-27 19:46:58.111 - RealTimeSTT: realtimestt - INFO - Initializing audio recording (creating pyAudio input stream, sample rate: 16000 buffer size: 512
+2026-10-27 19:46:58.147 - RealTimeSTT: realtimestt - INFO - Initializing WebRTC voice with Sensitivity 3
+2026-10-27 19:46:58.147 - RealTimeSTT: realtimestt - DEBUG - WebRTC VAD voice activity detection engine initialized successfully
+2026-10-27 19:46:58.159 - RealTimeSTT: realtimestt - DEBUG - Silero VAD auto backend raw_onnx_ifless unavailable
+Traceback (most recent call last):
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 176, in _create_auto_vad
+    return _create_raw_onnx_vad(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 230, in _create_raw_onnx_vad
+    return RawSileroOnnxVad(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 443, in __init__
+    ort = import_module("onnxruntime")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'onnxruntime'
+2026-10-27 19:46:58.172 - RealTimeSTT: realtimestt - DEBUG - Silero VAD auto backend raw_onnx unavailable
+Traceback (most recent call last):
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 176, in _create_auto_vad
+    return _create_raw_onnx_vad(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 230, in _create_raw_onnx_vad
+    return RawSileroOnnxVad(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 443, in __init__
+    ort = import_module("onnxruntime")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'onnxruntime'
+2026-10-27 19:46:59.348 - RealTimeSTT: realtimestt - DEBUG - Silero VAD voice activity detection engine initialized successfully with backend pytorch_cpu
+2026-10-27 19:47:00.641 - RealTimeSTT: realtimestt - DEBUG - Starting realtime worker
+2026-10-27 19:47:00.641 - RealTimeSTT: realtimestt - DEBUG - Waiting for main transcription model to start
+2026-10-27 19:47:00.641 - RealTimeSTT: realtimestt - DEBUG - Realtime transcription disabled; realtime worker exits
+2026-10-27 19:51:23.282 - RealTimeSTT: realtimestt - INFO - Starting RealTimeSTT
+2026-10-27 19:51:23.368 - RealTimeSTT: realtimestt - INFO - Initializing audio recording (creating pyAudio input stream, sample rate: 16000 buffer size: 512
+2026-10-27 19:51:23.420 - RealTimeSTT: realtimestt - INFO - Initializing WebRTC voice with Sensitivity 3
+2026-10-27 19:51:23.421 - RealTimeSTT: realtimestt - DEBUG - WebRTC VAD voice activity detection engine initialized successfully
+2026-10-27 19:51:23.445 - RealTimeSTT: realtimestt - DEBUG - Silero VAD auto backend raw_onnx_ifless unavailable
+Traceback (most recent call last):
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 176, in _create_auto_vad
+    return _create_raw_onnx_vad(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 230, in _create_raw_onnx_vad
+    return RawSileroOnnxVad(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 443, in __init__
+    ort = import_module("onnxruntime")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'onnxruntime'
+2026-10-27 19:51:23.484 - RealTimeSTT: realtimestt - DEBUG - Silero VAD auto backend raw_onnx unavailable
+Traceback (most recent call last):
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 176, in _create_auto_vad
+    return _create_raw_onnx_vad(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 230, in _create_raw_onnx_vad
+    return RawSileroOnnxVad(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 443, in __init__
+    ort = import_module("onnxruntime")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'onnxruntime'
+2026-10-27 19:51:25.095 - RealTimeSTT: realtimestt - DEBUG - Silero VAD voice activity detection engine initialized successfully with backend pytorch_cpu
+2026-10-27 19:51:26.421 - RealTimeSTT: realtimestt - DEBUG - Starting realtime worker
+2026-10-27 19:51:26.421 - RealTimeSTT: realtimestt - DEBUG - Waiting for main transcription model to start
+2026-10-27 19:51:26.421 - RealTimeSTT: realtimestt - DEBUG - Realtime transcription disabled; realtime worker exits
+2026-10-27 19:55:50.691 - RealTimeSTT: realtimestt - INFO - Starting RealTimeSTT
+2026-10-27 19:55:50.758 - RealTimeSTT: realtimestt - INFO - Initializing audio recording (creating pyAudio input stream, sample rate: 16000 buffer size: 512
+2026-10-27 19:55:50.829 - RealTimeSTT: realtimestt - INFO - Initializing WebRTC voice with Sensitivity 3
+2026-10-27 19:55:50.831 - RealTimeSTT: realtimestt - DEBUG - WebRTC VAD voice activity detection engine initialized successfully
+2026-10-27 19:55:50.846 - RealTimeSTT: realtimestt - DEBUG - Silero VAD auto backend raw_onnx_ifless unavailable
+Traceback (most recent call last):
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 176, in _create_auto_vad
+    return _create_raw_onnx_vad(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 230, in _create_raw_onnx_vad
+    return RawSileroOnnxVad(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 443, in __init__
+    ort = import_module("onnxruntime")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'onnxruntime'
+2026-10-27 19:55:50.885 - RealTimeSTT: realtimestt - DEBUG - Silero VAD auto backend raw_onnx unavailable
+Traceback (most recent call last):
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 176, in _create_auto_vad
+    return _create_raw_onnx_vad(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 230, in _create_raw_onnx_vad
+    return RawSileroOnnxVad(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\Documents\GitHub\kronos-ai-agent\.venv\Lib\site-packages\RealtimeSTT\core\silero_vad.py", line 443, in __init__
+    ort = import_module("onnxruntime")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ailan\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'onnxruntime'
+2026-10-27 19:55:52.759 - RealTimeSTT: realtimestt - DEBUG - Silero VAD voice activity detection engine initialized successfully with backend pytorch_cpu
+2026-10-27 19:55:54.466 - RealTimeSTT: realtimestt - DEBUG - Starting realtime worker
+2026-10-27 19:55:54.466 - RealTimeSTT: realtimestt - DEBUG - Waiting for main transcription model to start
+2026-10-27 19:55:54.466 - RealTimeSTT: realtimestt - DEBUG - Realtime transcription disabled; realtime worker exits
+2026-10-27 20:00:17.103 - RealTimeSTT: realtimestt - INFO - Starting RealTimeSTT
+2026-10-27 20:00:17.193 - RealTimeSTT: realtimestt - INFO - Initializing audio recording (creating pyAudio input stream, sample rate: 16000 buffer size: 512
+2026-10-27 20:00:17.267 - RealTimeSTT: realtimestt - INFO - Initializing WebRTC voice with Sensitivity 3
+2026-10-27 20:00:17.269 - RealTimeSTT: realtimestt - DEBUG - WebRTC VAD voice activity detection engine initialized successfully
+2026-10-27 20:00:26.962 - RealTimeSTT: realtimestt - DEBUG - Silero VAD voice activity detection engine initialized successfully with backend raw_onnx_ifless
+2026-10-27 20:00:27.176 - RealTimeSTT: realtimestt - DEBUG - Starting realtime worker
+2026-10-27 20:00:27.176 - RealTimeSTT: realtimestt - DEBUG - Waiting for main transcription model to start
+2026-10-27 20:00:27.176 - RealTimeSTT: realtimestt - DEBUG - Realtime transcription disabled; realtime worker exits
+2026-10-27 20:02:15.318 - RealTimeSTT: realtimestt - DEBUG - Main transcription model ready
+2026-10-27 20:02:15.444 - RealTimeSTT: realtimestt - DEBUG - RealtimeSTT initialization completed successfully
+2026-10-27 20:02:15.500 - RealTimeSTT: realtimestt - INFO - Setting listen time
+2026-10-27 20:02:15.504 - RealTimeSTT: realtimestt - INFO - State changed from 'inactive' to 'listening'
+2026-10-27 20:02:15.513 - RealTimeSTT: realtimestt - DEBUG - Waiting for recording start
+2026-10-27 20:02:19.755 - RealTimeSTT: realtimestt - INFO - voice activity detected
+2026-10-27 20:02:19.769 - RealTimeSTT: realtimestt - INFO - recording started
+2026-10-27 20:02:19.771 - RealTimeSTT: realtimestt - INFO - State changed from 'listening' to 'recording'
+2026-10-27 20:02:19.821 - RealTimeSTT: realtimestt - DEBUG - Waiting for recording stop
+2026-10-27 20:02:20.994 - RealTimeSTT: realtimestt - INFO - recording stopped
+2026-10-27 20:02:21.102 - RealTimeSTT: realtimestt - DEBUG - No samples removed, final audio length: 35840
+2026-10-27 20:02:21.102 - RealTimeSTT: realtimestt - INFO - State changed from 'recording' to 'inactive'
+2026-10-27 20:02:21.111 - RealTimeSTT: realtimestt - INFO - State changed from 'inactive' to 'transcribing'
+2026-10-27 20:02:21.111 - RealTimeSTT: realtimestt - DEBUG - Adding transcription request, no early transcription started
+2026-10-27 20:02:21.171 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:21.291 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:21.415 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:21.525 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:21.630 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:21.738 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:21.851 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:21.955 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:22.068 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:22.180 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:22.288 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:22.393 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:22.499 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:22.607 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:22.713 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:22.827 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:22.941 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:23.050 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:23.165 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:23.265 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:23.381 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:23.489 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:23.601 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:23.718 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:23.828 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:23.943 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:24.054 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:24.160 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:24.266 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:24.375 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:24.487 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:24.599 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:24.708 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:24.814 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:24.922 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:25.035 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:25.141 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:25.245 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:25.357 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:25.466 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:25.571 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:25.688 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:25.797 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:25.857 - RealTimeSTT: realtimestt - INFO - State changed from 'transcribing' to 'inactive'
+2026-10-27 20:02:25.904 - RealTimeSTT: realtimestt - DEBUG - Model tiny completed transcription in 4.79 seconds
+2026-10-27 20:02:30.051 - RealTimeSTT: realtimestt - INFO - voice activity detected
+2026-10-27 20:02:30.051 - RealTimeSTT: realtimestt - INFO - recording started
+2026-10-27 20:02:30.051 - RealTimeSTT: realtimestt - INFO - State changed from 'inactive' to 'recording'
+2026-10-27 20:02:30.435 - RealTimeSTT: realtimestt - INFO - Setting listen time
+2026-10-27 20:02:30.435 - RealTimeSTT: realtimestt - DEBUG - Waiting for recording stop
+2026-10-27 20:02:34.532 - RealTimeSTT: realtimestt - INFO - recording stopped
+2026-10-27 20:02:34.541 - RealTimeSTT: realtimestt - DEBUG - No samples removed, final audio length: 88064
+2026-10-27 20:02:34.541 - RealTimeSTT: realtimestt - INFO - State changed from 'recording' to 'inactive'
+2026-10-27 20:02:34.549 - RealTimeSTT: realtimestt - INFO - State changed from 'inactive' to 'transcribing'
+2026-10-27 20:02:34.550 - RealTimeSTT: realtimestt - DEBUG - Adding transcription request, no early transcription started
+2026-10-27 20:02:34.558 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:34.671 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:34.785 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:34.894 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:35.002 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:35.112 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:35.225 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:35.332 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:35.446 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:35.551 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:35.669 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:35.778 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:35.879 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:35.992 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:36.098 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:36.202 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:36.317 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:36.427 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:36.537 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:36.645 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:36.759 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:36.864 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:36.991 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:37.101 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:37.213 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:37.325 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:37.427 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:37.539 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:37.654 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:37.779 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:37.888 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:37.999 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:38.107 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:38.221 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:38.332 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:38.447 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:38.558 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:38.664 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:38.769 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:38.872 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:38.983 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:39.101 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:39.210 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:39.320 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:39.428 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:39.531 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:39.650 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:39.756 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:39.756 - RealTimeSTT: realtimestt - INFO - State changed from 'transcribing' to 'inactive'
+2026-10-27 20:02:39.764 - RealTimeSTT: realtimestt - DEBUG - Model tiny completed transcription in 5.21 seconds
+2026-10-27 20:02:40.485 - RealTimeSTT: realtimestt - INFO - Setting listen time
+2026-10-27 20:02:40.485 - RealTimeSTT: realtimestt - INFO - State changed from 'inactive' to 'listening'
+2026-10-27 20:02:40.485 - RealTimeSTT: realtimestt - DEBUG - Waiting for recording start
+2026-10-27 20:02:43.488 - RealTimeSTT: realtimestt - INFO - voice activity detected
+2026-10-27 20:02:43.488 - RealTimeSTT: realtimestt - INFO - recording started
+2026-10-27 20:02:43.488 - RealTimeSTT: realtimestt - INFO - State changed from 'listening' to 'recording'
+2026-10-27 20:02:43.492 - RealTimeSTT: realtimestt - DEBUG - Waiting for recording stop
+2026-10-27 20:02:50.271 - RealTimeSTT: realtimestt - INFO - recording stopped
+2026-10-27 20:02:50.291 - RealTimeSTT: realtimestt - DEBUG - No samples removed, final audio length: 124928
+2026-10-27 20:02:50.291 - RealTimeSTT: realtimestt - INFO - State changed from 'recording' to 'inactive'
+2026-10-27 20:02:50.294 - RealTimeSTT: realtimestt - INFO - State changed from 'inactive' to 'transcribing'
+2026-10-27 20:02:50.294 - RealTimeSTT: realtimestt - DEBUG - Adding transcription request, no early transcription started
+2026-10-27 20:02:50.299 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:50.413 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:50.525 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:50.634 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:50.741 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:50.850 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:50.959 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:51.067 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:51.175 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:51.291 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:51.395 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:51.505 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:51.609 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:51.727 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:51.829 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:51.871 - RealTimeSTT: realtimestt - INFO - voice activity detected
+2026-10-27 20:02:51.873 - RealTimeSTT: realtimestt - INFO - recording started
+2026-10-27 20:02:51.873 - RealTimeSTT: realtimestt - INFO - State changed from 'transcribing' to 'recording'
+2026-10-27 20:02:51.931 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:52.039 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:52.151 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:52.263 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:52.367 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:52.511 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:52.643 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:52.777 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:52.899 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:53.239 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:53.347 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:53.455 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:53.569 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:53.673 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:53.780 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:53.885 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:53.999 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:54.109 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:54.227 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:54.333 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:54.445 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:54.559 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:54.668 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:54.773 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:54.880 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:54.994 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:55.097 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:55.211 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:55.315 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:55.428 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:55.539 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:55.644 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:55.757 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:55.781 - RealTimeSTT: realtimestt - DEBUG - Model tiny completed transcription in 5.49 seconds
+2026-10-27 20:02:56.503 - RealTimeSTT: realtimestt - INFO - Setting listen time
+2026-10-27 20:02:56.505 - RealTimeSTT: realtimestt - DEBUG - Waiting for recording stop
+2026-10-27 20:02:58.481 - RealTimeSTT: realtimestt - INFO - recording stopped
+2026-10-27 20:02:58.955 - RealTimeSTT: realtimestt - DEBUG - No samples removed, final audio length: 121856
+2026-10-27 20:02:58.957 - RealTimeSTT: realtimestt - INFO - State changed from 'recording' to 'inactive'
+2026-10-27 20:02:58.977 - RealTimeSTT: realtimestt - INFO - State changed from 'inactive' to 'transcribing'
+2026-10-27 20:02:58.979 - RealTimeSTT: realtimestt - DEBUG - Adding transcription request, no early transcription started
+2026-10-27 20:02:59.039 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:59.146 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:59.263 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:59.379 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:59.497 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:59.613 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:59.781 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:02:59.901 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:00.027 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:00.307 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:00.685 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:00.897 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:01.104 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:01.331 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:01.441 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:01.559 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:01.679 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:01.806 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:01.918 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:02.119 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:02.269 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:02.419 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:02.531 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:02.641 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:02.749 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:02.828 - RealTimeSTT: realtimestt - DEBUG - Receive from stdout pipe
+2026-10-27 20:03:02.836 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:02.841 - RealTimeSTT: realtimestt - INFO - None
+2026-10-27 20:03:03.049 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:03.259 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:03.465 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:03.681 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:03.899 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:04.117 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:04.325 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:04.533 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:04.739 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:04.950 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:05.155 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:05.359 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:05.564 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:05.767 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:05.975 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:06.190 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:06.407 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:06.619 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:06.838 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:07.047 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:07.250 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:07.453 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:07.664 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:07.879 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:03:08.097 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:06:19.702 - RealTimeSTT: realtimestt - INFO - Starting RealTimeSTT
+2026-10-27 20:06:19.779 - RealTimeSTT: realtimestt - INFO - Initializing audio recording (creating pyAudio input stream, sample rate: 16000 buffer size: 512
+2026-10-27 20:06:19.839 - RealTimeSTT: realtimestt - INFO - Initializing WebRTC voice with Sensitivity 3
+2026-10-27 20:06:19.842 - RealTimeSTT: realtimestt - DEBUG - WebRTC VAD voice activity detection engine initialized successfully
+2026-10-27 20:06:21.742 - RealTimeSTT: realtimestt - DEBUG - Silero VAD voice activity detection engine initialized successfully with backend raw_onnx_ifless
+2026-10-27 20:06:21.792 - RealTimeSTT: realtimestt - DEBUG - Starting realtime worker
+2026-10-27 20:06:21.792 - RealTimeSTT: realtimestt - DEBUG - Waiting for main transcription model to start
+2026-10-27 20:06:21.792 - RealTimeSTT: realtimestt - DEBUG - Realtime transcription disabled; realtime worker exits
+2026-10-27 20:06:55.816 - RealTimeSTT: realtimestt - DEBUG - Main transcription model ready
+2026-10-27 20:06:55.892 - RealTimeSTT: realtimestt - DEBUG - RealtimeSTT initialization completed successfully
+2026-10-27 20:06:55.929 - RealTimeSTT: realtimestt - INFO - Setting listen time
+2026-10-27 20:06:55.937 - RealTimeSTT: realtimestt - INFO - State changed from 'inactive' to 'listening'
+2026-10-27 20:06:55.942 - RealTimeSTT: realtimestt - DEBUG - Waiting for recording start
+2026-10-27 20:06:58.332 - RealTimeSTT: realtimestt - INFO - voice activity detected
+2026-10-27 20:06:58.336 - RealTimeSTT: realtimestt - INFO - recording started
+2026-10-27 20:06:58.338 - RealTimeSTT: realtimestt - INFO - State changed from 'listening' to 'recording'
+2026-10-27 20:06:58.346 - RealTimeSTT: realtimestt - DEBUG - Waiting for recording stop
+2026-10-27 20:07:00.391 - RealTimeSTT: realtimestt - INFO - recording stopped
+2026-10-27 20:07:00.422 - RealTimeSTT: realtimestt - DEBUG - No samples removed, final audio length: 48640
+2026-10-27 20:07:00.424 - RealTimeSTT: realtimestt - INFO - State changed from 'recording' to 'inactive'
+2026-10-27 20:07:00.426 - RealTimeSTT: realtimestt - INFO - State changed from 'inactive' to 'transcribing'
+2026-10-27 20:07:00.427 - RealTimeSTT: realtimestt - DEBUG - Adding transcription request, no early transcription started
+2026-10-27 20:07:00.452 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:00.562 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:00.666 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:00.770 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:00.888 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:00.992 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:01.097 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:01.212 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:01.315 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:01.426 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:01.536 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:01.644 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:01.752 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:01.860 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:01.962 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:02.070 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:02.182 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:02.296 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:02.398 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:02.506 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:02.618 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:02.731 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:02.842 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:02.948 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:03.051 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:03.160 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:03.270 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:03.388 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:03.492 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:03.599 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:03.707 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:03.815 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:03.931 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:04.035 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:04.136 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:04.252 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:04.362 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:04.472 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:04.584 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:04.701 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:04.814 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:04.921 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:05.029 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:05.135 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:05.205 - RealTimeSTT: realtimestt - INFO - State changed from 'transcribing' to 'inactive'
+2026-10-27 20:07:05.226 - RealTimeSTT: realtimestt - DEBUG - Model tiny completed transcription in 4.80 seconds
+2026-10-27 20:07:08.988 - RealTimeSTT: realtimestt - INFO - Setting listen time
+2026-10-27 20:07:08.988 - RealTimeSTT: realtimestt - INFO - State changed from 'inactive' to 'listening'
+2026-10-27 20:07:08.988 - RealTimeSTT: realtimestt - DEBUG - Waiting for recording start
+2026-10-27 20:07:19.452 - RealTimeSTT: realtimestt - INFO - voice activity detected
+2026-10-27 20:07:19.472 - RealTimeSTT: realtimestt - INFO - recording started
+2026-10-27 20:07:19.472 - RealTimeSTT: realtimestt - INFO - State changed from 'listening' to 'recording'
+2026-10-27 20:07:19.568 - RealTimeSTT: realtimestt - DEBUG - Waiting for recording stop
+2026-10-27 20:07:21.691 - RealTimeSTT: realtimestt - INFO - recording stopped
+2026-10-27 20:07:21.851 - RealTimeSTT: realtimestt - DEBUG - No samples removed, final audio length: 52224
+2026-10-27 20:07:21.852 - RealTimeSTT: realtimestt - INFO - State changed from 'recording' to 'inactive'
+2026-10-27 20:07:21.856 - RealTimeSTT: realtimestt - INFO - State changed from 'inactive' to 'transcribing'
+2026-10-27 20:07:21.857 - RealTimeSTT: realtimestt - DEBUG - Adding transcription request, no early transcription started
+2026-10-27 20:07:21.898 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:22.002 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:22.112 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:22.226 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:22.338 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:22.450 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:22.561 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:22.669 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:22.778 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:22.889 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:22.998 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:23.110 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:23.233 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:23.344 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:23.460 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:23.579 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:23.682 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:23.835 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:23.950 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:24.187 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:24.350 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:24.650 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:24.909 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:25.214 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:25.326 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:25.473 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:25.652 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:25.803 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:25.937 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:26.071 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:26.247 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:26.567 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:26.745 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:27.080 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:27.412 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:27.668 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:27.799 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:27.916 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:28.038 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:28.170 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:28.434 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:28.582 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:28.742 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:28.858 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:28.980 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:29.097 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:29.209 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:29.346 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:29.468 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:29.584 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:29.720 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:29.828 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:29.992 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:30.153 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:30.292 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:30.408 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:30.622 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:30.772 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:30.900 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:31.036 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:31.182 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:31.485 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:31.634 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:31.784 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:31.899 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:32.089 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:32.293 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:32.465 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:32.629 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:32.901 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:33.035 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:33.189 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:33.293 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:33.401 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:33.509 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:33.613 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2026-10-27 20:07:33.729 - RealTimeSTT: realtimestt - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
